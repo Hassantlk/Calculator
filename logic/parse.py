@@ -1,8 +1,8 @@
 def check_oprator(opr):
     dict_opr = {
-        "+": add(a,b)
-        "-": subtract(a,b)
-        "*": multipy(a,b)
+        "+": add(a,b),
+        "-": subtract(a,b),
+        "*": multipy(a,b),
         "/": divide(a,b)
     }
 
