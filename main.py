@@ -1,9 +1,9 @@
 import exeption
 import logic.parse
-import parse
 import logic.calc
-import calc
-
+# import check_operator from logic.parse
+from logic.parse import check_operator
+'''
 # exeption
 class InvalidFormatExeption(Exception):
     def __init__(self, code, msg):
@@ -31,14 +31,9 @@ class InvalidOperatorExeption(Exception):
     
     def __str__(self):
         return f"{self.code} Number: {self.msg}"
+'''
 
-
-
-
-
-
-
-
+'''
 # parse
 def check_oprator(opr, a, b):
     dict_opr = {
@@ -62,6 +57,7 @@ def multipy(a, b):
 
 def divide(a, b):
     return a/b
+'''
 
 # main
 while quit:= input("Enter 3 with space [type 'quit or q' to Exit]: "):
