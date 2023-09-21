@@ -1,82 +1,36 @@
-import exeption
-import logic.parse
-import logic.calc
+
+from exeption import InvalidFormatExeption, InvalidNumberExeption, InvalidOperatorExeption, ZeroDivisionErrorNew
+# import logic.parse
+# import logic.calc
 # import check_operator from logic.parse
-from logic.parse import check_operator
-'''
-# exeption
-class InvalidFormatExeption(Exception):
-    def __init__(self, code, msg):
-        self.code = code
-        self.msg = msg
-    
-    
-    def __str__(self):
-        return f"{self.code} Number: {self.msg}"
+from logic.parse import check_oprator
+from logic.calc import add, subtract, multipy, divide
 
-class InvalidNumberExeption(Exception):
-    def __init__(self, code, msg):
-        self.code = code
-        self.msg = msg
-    
-    
-    def __str__(self):
-        return f"{self.code} Number: {self.msg}"
-
-class InvalidOperatorExeption(Exception):
-    def __init__(self, code, msg):
-        self.code = code
-        self.msg = msg
-    
-    
-    def __str__(self):
-        return f"{self.code} Number: {self.msg}"
-'''
-
-'''
-# parse
-def check_oprator(opr, a, b):
-    dict_opr = {
-        "+": add(a,b),
-        "-": subtract(a,b),
-        "*": multipy(a,b),
-        "/": divide(a,b)
-    }
-
-    return dict_opr[opr]
-
-#calc
-def add(a, b):
-    return a + b
-
-def subtract(a, b):
-    return a - b
-
-def multipy(a, b):
-    return a * b
-
-def divide(a, b):
-    return a/b
-'''
 
 # main
-while quit:= input("Enter 3 with space [type 'quit or q' to Exit]: "):
+while quit := input("Enter 3 with space [type 'quit or q' to Exit]: "):
     try:
         if quit.lower() == "quit" or quit.lower() == "q":
             break
 
         if len(quit.split(" ")) != 3:
-            raise InvalidFormatExeption(1, "Please Enter right format [num1 operator num2] or enter 'q' to exit.")
+            raise InvalidFormatExeption(
+                1, "Please Enter right format [num1 operator num2] or enter 'q' to exit.")
 
         a, opr, b = quit.split(" ")
-        if opr not in ["+","-","*","/"]:
-            raise InvalidOperatorExeption(2, "between number enter right operator ['+','-','*','/'] or enter 'q' to exit.")
+        if opr not in ["+", "-", "*", "/"]:
+            raise InvalidOperatorExeption(
+                2, "between number enter right operator ['+','-','*','/'] or enter 'q' to exit.")
 
         try:
             a = int(a)
             b = int(b)
         except ValueError:
-            raise InvalidNumberExeption(3,"Enter number right")
+            raise InvalidNumberExeption(3, "Enter number right")
+
+        if b == 0:
+            raise ZeroDivisionErrorNew(4, "Don't use 0 as second number to divide")
+
 
     except InvalidFormatExeption as ife:
         print(ife.msg)
@@ -84,7 +38,7 @@ while quit:= input("Enter 3 with space [type 'quit or q' to Exit]: "):
         print(ine.msg)
     except InvalidOperatorExeption as ioe:
         print(ioe.msg)
+    except ZeroDivisionErrorNew as zden:
+        print(zden.msg)
     else:
         print(check_oprator(opr, a, b))
-
-
